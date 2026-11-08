@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  --font-geist-sans: Arial, Helvetica, sans-serif;
+  --font-geist-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --background: #050807;
+  --foreground: #d7ffe8;
+  --terminal-green: #00ff9c;
+  --terminal-green-dim: #00c978;
+  --terminal-border: #1a3d2e;
+  --terminal-panel: #0a1210;
+  --terminal-muted: #6b8f7d;
+  --terminal-glow: rgba(0, 255, 156, 0.25);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-terminal: var(--terminal-green);
+  --color-terminal-dim: var(--terminal-green-dim);
+  --color-terminal-border: var(--terminal-border);
+  --color-terminal-panel: var(--terminal-panel);
+  --color-terminal-muted: var(--terminal-muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  min-height: 100vh;
+}
+
+::selection {
+  background: rgba(0, 255, 156, 0.25);
+  color: #fff;
+}
+
+.scanlines::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.08),
+    rgba(0, 0, 0, 0.08) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 50;
+}
+
+.terminal-glow {
+  box-shadow: 0 0 20px var(--terminal-glow), inset 0 0 20px rgba(0, 255, 156, 0.03);
+}
+
+.terminal-border {
+  border: 1px solid var(--terminal-border);
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(0, 255, 156, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(0, 255, 156, 0.45);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.leaflet-container {
+  background: #0a1210 !important;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+.leaflet-control-zoom a {
+  background: #0a1210 !important;
+  color: #00ff9c !important;
+  border-color: #1a3d2e !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(5, 8, 7, 0.85) !important;
+  color: #6b8f7d !important;
+}
+
+.leaflet-control-attribution a {
+  color: #00c978 !important;
+}
+
+input,
+select,
+button {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a1210;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a3d2e;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00c978;
+}
+
+:focus-visible { outline: 2px solid var(--terminal-green); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* Apply the dark treatment only to base tiles, preserving markers and attribution. */
+.scanner-map-tiles { filter: invert(1) hue-rotate(180deg) saturate(0.45) brightness(0.75); }
+
+/* Numbered pins connect the map to its result cards without a neon glow. */
+.lead-pin { background: transparent; border: 0; }
+.lead-pin span { display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 1.5px solid #82c8aa; border-radius: 9px 9px 9px 2px; background: #10291f; color: #d7ffe8; box-shadow: 0 2px 5px #0008; font: 600 11px ui-monospace, monospace; }
+.lead-pin--selected span { background: #a7f3cf; color: #082117; border-color: #fff; box-shadow: 0 0 0 4px #a7f3cf26; }
+.lead-cluster { display: flex; align-items: center; justify-content: center; border: 4px solid #8bd4b52b; border-radius: 50%; background: #122d23; color: #d7ffe8; background-clip: padding-box; font: 600 12px ui-monospace, monospace; box-shadow: 0 2px 5px #0006; }
+.business-popup .leaflet-popup-content-wrapper, .business-popup .leaflet-popup-tip { background: #0b1711; color: #d7ffe8; }
+.business-popup .leaflet-popup-content-wrapper { border: 1px solid #28523c; border-radius: 12px; }
+.business-popup .leaflet-popup-content p { margin: 0; }
+.business-popup .leaflet-popup-content a { color: #a7f3cf; }
+.business-popup .leaflet-popup-close-button { color: #8eb4a0; }
+
+.zone-pin { display: flex; align-items: center; justify-content: center; border: 1px solid #e6bf73; border-radius: 5px; background: #2c2616; color: #ffe1a6; font: 600 11px ui-monospace, monospace; }

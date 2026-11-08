@@ -1,0 +1,6 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "Terms of use | Lead Scanner" };
+export default function Page() {
+  return <main className="mx-auto max-w-3xl px-6 py-16"><Link href="/" className="text-terminal hover:underline">← Home</Link><h1 className="my-8 text-3xl text-terminal">Terms of use</h1><p className="text-sm leading-7">This is a portfolio demonstration provided as is, without guarantees of accuracy, completeness, uptime, or fitness for a particular purpose. Missing website tags do not prove that a business has no website. Phone numbers are not verified. Demo businesses are fictional and must not be contacted. Verify live results independently. Respect applicable outreach rules and the terms of each data provider. Public Overpass services have capacity limits; scans may fail or return partial results. OpenStreetMap data is available under the Open Database License; preserve attribution and review its requirements when redistributing exports. Google data, if enabled by the operator, is subject to Google’s separate terms. Hosting and optional paid providers can incur costs.</p><p className="mt-6 text-sm"><a className="text-terminal underline" href="https://www.openstreetmap.org/copyright">OpenStreetMap attribution and license</a></p></main>;
+}

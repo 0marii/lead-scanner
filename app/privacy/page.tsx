@@ -1,0 +1,6 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+export const metadata: Metadata = { title: "Privacy | Lead Scanner" };
+export default function Page() {
+  return <main className="mx-auto max-w-3xl px-6 py-16"><Link href="/" className="text-terminal hover:underline">← Home</Link><h1 className="my-8 text-3xl text-terminal">Privacy</h1><p className="text-sm leading-7">The app stores saved lead identifiers in your browser’s local storage. It does not provide accounts or store a lead database. Scan and export requests pass through the hosting server, whose operator may retain request logs. Live scans send the selected category and area to OpenStreetMap Overpass, or Google when configured. Map tiles load from the OpenStreetMap Foundation, which receives your IP address and tile requests. GPS is optional: permission is requested by your browser, and your chosen scan coordinates are sent when you run a scan. Demo scans do not query a business-data provider; the map still uses external tiles. Clear this site’s browser storage to remove saved identifiers. Review the hosting provider’s and data providers’ privacy policies before deployment or use.</p><p className="mt-6 text-sm"><a className="text-terminal underline" href="https://www.openstreetmap.org/copyright">OpenStreetMap attribution and license</a></p></main>;
+}
